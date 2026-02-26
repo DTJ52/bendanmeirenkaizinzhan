@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>✨ 笨蛋美人 · 开心 ✨</title>
+    <style>
+        /* 极简重置 + 使用 vw / rem 实现真正的弹性自适应 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fdeff2 0%, #ffe6ea 40%, #ffd9e2 100%);
+            font-family: 'Quicksand', 'Segoe UI', 'Helvetica Neue', Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5vh 3vw;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .star-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 2.5vw rgba(255, 180, 210, 0.9);
+            animation: float-star 7s infinite alternate ease-in-out;
+        }
+
+        @keyframes float-star {
+            0% { transform: translateY(0) scale(1); opacity: 0.5; }
+            100% { transform: translateY(-2vh) scale(1.2); opacity: 1; }
+        }
+
+        .happy-card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 92vw;
+            background: rgba(255, 245, 250, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 10vw;
+            border: 0.3vw solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 5vw 8vw rgba(245, 130, 170, 0.25), 0 2vw 5vw rgba(255, 180, 200, 0.5), inset 0 0 5vw rgba(255, 255, 255, 0.9);
+            padding: 6vw 5vw 8vw 5vw;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .header-giggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2vw;
+            margin-bottom: 2vh;
+            flex-wrap: wrap;
+        }
+
+        .cute-emoji {
+            font-size: 11vw;
+            line-height: 1;
+            filter: drop-shadow(0 1vw 2vw #ff9eb5);
+            animation: wobble 2.8s infinite;
+            transform-origin: center;
+        }
+
+        @media (min-width: 500px) {
+            .cute-emoji {
+                font-size: 60px;
+            }
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            15% { transform: rotate(8deg) scale(1.08); }
+            30% { transform: rotate(-6deg) scale(1.04); }
+        }
+
+        h1 {
+            font-size: 9vw;
+            font-weight: 800;
+            letter-spacing: 0.5vw;
+            background: linear-gradient(130deg, #b52b62, #e1588f, #ff8cb0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 1vw 3vw rgba(255, 110, 160, 0.5);
+            margin: 0.5vh 0;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 480px) {
+            h1 { font-size: 44px; }
+        }
+
+        .sub-message {
+            font-size: 5.5vw;
+            color: #a54268;
+            background: rgba(255, 220, 235, 0.8);
+            padding: 2.5vw 5vw;
+            border-radius: 10vw;
+            margin: 1.5vh 0 4vh 0;
+            display: inline-block;
+            backdrop-filter: blur(4px);
+            font-weight: 650;
+            box-shadow: 0 1vw 2.5vw #ffb0c7;
+            border: 0.4vw solid #ffe2f0;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 500px) {
+            .sub-message { font-size: 28px; padding: 12px 28px; }
+        }
+
+        .joy-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3vw;
+            justify-content: center;
+            margin: 4vh 0 4vh;
+        }
+
+        .joy-item {
+            background: #fff0f6;
+            border: 0.5vw solid white;
+            border-radius: 12vw;
+            padding: 3.5vw 5vw;
+            font-size: 5.2vw;
+            font-weight: 700;
+            color: #b34370;
+            box-shadow: 0 1.5vw 0 #dd92af, 0 2.5vw 5vw #feb6cd;
+            cursor: pointer;
+            transition: 0.08s linear;
+            display: flex;
+            align-items: center;
+            gap: 2vw;
+            flex: 1 1 auto;
+            min-width: 35vw;
+            justify-content: center;
+        }
+
+        .joy-item:active {
+            transform: translateY(1.5vw);
+            box-shadow: 0 0.5vw 0 #dd92af, 0 2vw 4vw #f59ebc;
+        }
+
+        .joy-item span {
+            font-size: 7vw;
+        }
+
+        @media (min-width: 500px) {
+            .joy-item { font-size: 26px; padding: 16px 24px; }
+            .joy-item span { font-size: 36px; }
+        }
+
+        .interactive-love {
+            background: rgba(255, 210, 230, 0.6);
+            border-radius: 10vw;
+            padding: 5vw 4vw;
+            margin: 3vh 0 4vh;
+            border: 0.5vw dashed #ff9bbd;
+            backdrop-filter: blur(4px);
+        }
+
+        .love-message {
+            font-size: 6vw;
+            font-weight: 600;
+            color: #a13058;
+            min-height: 18vw;
+            text-shadow: 0.5vw 0.5vw 0 #ffd0e0;
+            margin-bottom: 4vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2vw;
+            flex-wrap: wrap;
+            line-height: 1.4;
+            padding: 0 1vw;
+            word-break: break-word;
+        }
+
+        .love-message .heart-burst {
+            font-size: 8vw;
+            animation: ping 0.9s infinite alternate;
+        }
+
+        @keyframes ping {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.3); text-shadow: 0 0 5vw #ff80a5; }
+        }
+
+        .love-btn {
+            background: linear-gradient(125deg, #ff84ae, #ffa5bd);
+            border: none;
+            border-radius: 12vw;
+            padding: 4vw 7vw;
+            color: white;
+            font-size: 6vw;
+            font-weight: 800;
+            box-shadow: 0 1.5vw 0 #ad4267, 0 3vw 6vw #ffa7c4;
+            cursor: pointer;
+            transition: all 0.08s ease;
+            border: 0.6vw solid #fff0f6;
+            display: inline-flex;
+            align-items: center;
+            gap: 3vw;
+            margin: 1vh 0 2vh;
+            line-height: 1.2;
+            max-width: 95%;
+            justify-content: center;
+        }
+
+        .love-btn:active {
+            transform: translateY(1.5vw);
+            box-shadow: 0 0.5vw 0 #ad4267, 0 2vw 5vw #f58baf;
+        }
+
+        @media (min-width: 500px) {
+            .love-message { font-size: 30px; min-height: 90px; }
+            .love-btn { font-size: 32px; padding: 18px 32px; }
+        }
+
+        /* 花园区域 — 动态生成按钮，使用flex-wrap自动换行 */
+        .flower-garden {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4vw 3vw;
+            margin: 4vh 0 2vh;
+        }
+
+        .flower-btn {
+            background: none;
+            border: none;
+            font-size: 13vw;
+            cursor: pointer;
+            transition: 0.15s;
+            filter: drop-shadow(0 1.5vw 3vw #ff86b0);
+            padding: 2vw 2vw 0.5vw;
+            border-radius: 50%;
+            background: rgba(255, 240, 250, 0.3);
+            line-height: 1;
+            min-width: 18vw;
+            max-width: 100px;
+            flex-shrink: 0;
+        }
+
+        .flower-btn:active {
+            transform: scale(1.25) rotate(-5deg);
+            filter: drop-shadow(0 3vw 5vw #ff3b7a);
+        }
+
+        @media (min-width: 500px) {
+            .flower-btn { font-size: 70px; min-width: 90px; }
+        }
+
+        .flower-message {
+            font-size: 5.8vw;
+            background: #fec7dc;
+            border-radius: 12vw;
+            padding: 4vw 7vw;
+            color: #792c4b;
+            font-weight: 550;
+            border: 0.6vw solid white;
+            display: inline-block;
+            box-shadow: 0 1vw 0 #c6537a;
+            margin: 2vh 0 2vh;
+            max-width: 100%;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+
+        @media (min-width: 500px) {
+            .flower-message { font-size: 28px; padding: 18px 32px; }
+        }
+
+        .footer-note {
+            margin-top: 4vh;
+            font-size: 5.5vw;
+            color: #c45079;
+            background: rgba(255, 240, 245, 0.9);
+            padding: 3.5vw 5vw;
+            border-radius: 12vw;
+            border: 0.5vw solid white;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            line-height: 1.3;
+        }
+
+        .footer-note i {
+            font-style: normal;
+            display: inline-block;
+            animation: spin-heart 2.2s infinite;
+            font-size: 7vw;
+        }
+
+        @media (min-width: 500px) {
+            .footer-note { font-size: 26px; }
+            .footer-note i { font-size: 36px; }
+        }
+
+        @keyframes spin-heart {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(12deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.55);
+            border-radius: 90% 20% 80% 30% / 40% 60% 30% 70%;
+            width: 40vw;
+            height: 15vw;
+            z-index: 5;
+            pointer-events: none;
+            backdrop-filter: blur(6px);
+        }
+
+        .cloud1 { top: 2vh; left: -5vw; width: 45vw; height: 16vw; }
+        .cloud2 { bottom: 2vh; right: -5vw; width: 50vw; height: 18vw; }
+
+        @media (min-width: 600px) {
+            .cloud1 { width: 250px; height: 90px; left: -30px; }
+            .cloud2 { width: 280px; height: 100px; right: -30px; }
+        }
+
+        button, div[class*="btn"], .joy-item {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body>
+    <div class="star-bg" id="starfield"></div>
+
+    <div class="cloud cloud1" style="background: rgba(255,235,240,0.6);"></div>
+    <div class="cloud cloud2" style="background: rgba(255,220,235,0.7);"></div>
+
+    <main class="happy-card">
+        <div class="header-giggle">
+            <span class="cute-emoji">🥺🌸</span>
+            <h1>笨蛋美人充电站</h1>
+            <span class="cute-emoji">✨🫧</span>
+        </div>
+
+        <div class="sub-message">
+            ⭐️ 今天也要甜得冒泡 ⭐️
+        </div>
+
+        <div class="joy-grid">
+            <div class="joy-item" id="giggleBtn">
+                <span>🐶</span> 戳笑穴
+            </div>
+            <div class="joy-item" id="hugBtn">
+                <span>🧸</span> 抱抱熊
+            </div>
+            <div class="joy-item" id="candyBtn">
+                <span>🍬</span> 甜蜜炮
+            </div>
+        </div>
+
+        <div class="interactive-love">
+            <div class="love-message" id="loveMessage">
+                <span class="heart-burst">💖</span> 今天也是宇宙第一可爱 <span class="heart-burst">💖</span>
+            </div>
+            <button class="love-btn" id="sendLoveBtn">
+                <span>✨</span> 发射爱心 <span>✨</span>
+            </button>
+            <p style="color:#aa3868; margin-top: 2vh; font-size:4vw; opacity:0.9; font-weight:500;">点一下夸一句，循环夸夸～</p>
+        </div>
+
+        <!-- 秘密花园 — 动态生成按钮，每个按钮对应唯一的花朵句子（不再写死五个按钮） -->
+        <div class="flower-garden" id="flowerGarden"></div>
+        <div class="flower-message" id="flowerMessage">
+            轻轻点一朵小花，听它说甜甜的话
+        </div>
+
+        <div class="footer-note">
+            <i>❤️</i> 笨蛋美人，你最可爱 <i>❤️</i>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // ---------- 星星生成器 ----------
+            const starContainer = document.getElementById('starfield');
+            const screenWidth = window.innerWidth;
+            let starCount = Math.floor(screenWidth / 35);
+            if (starCount < 16) starCount = 16;
+            if (starCount > 38) starCount = 38;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 14 + 5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 6 + 's';
+                star.style.animationDuration = Math.random() * 7 + 5 + 's';
+                star.style.background = `rgba(255, ${190 + Math.floor(Math.random()*65)}, 225, ${0.6+Math.random()*0.4})`;
+                starContainer.appendChild(star);
+            }
+
+            // ---------- 获取元素 ----------
+            const giggleBtn = document.getElementById('giggleBtn');
+            const hugBtn = document.getElementById('hugBtn');
+            const candyBtn = document.getElementById('candyBtn');
+            const loveMessageDiv = document.getElementById('loveMessage');
+            const sendLoveBtn = document.getElementById('sendLoveBtn');
+            const flowerMessageDiv = document.getElementById('flowerMessage');
+            const flowerGarden = document.getElementById('flowerGarden');
+
+            // ---------- 各种开心库 ----------
+            const gigglePhrases = [
+                "😂 你笑起来，像草莓味的跳跳糖！",
+                "🐾 可爱攻击！命中你的嘴角～",
+                "🎈 噗嗤！你的笑容发射成功！",
+                "😆 嘎嘎嘎，整个星球都变甜啦",
+                "🍭 再笑一笑嘛，我要存起来当壁纸",
+                "✨ 甜度超标！你的笑容在发光～",
+                "🍬 一笑就甜，治愈所有不开心",
+                "🌟 捕捉到一只超甜小可爱！",
+                "💫 笑容一扬，世界都变温柔啦",
+                "🍓 你一笑，空气都是草莓味",
+                "🌸 温柔暴击！笑容太治愈啦",
+                "🌼 嘴角上扬，快乐自动上线～",
+                "🥤 像汽水一样，笑着冒着甜泡",
+                "💖 甜份满分，笑容自带光芒",
+                "🐰 再笑一下，心都要化掉啦"
+            ];
+
+            const hugPhrases = [
+                "🤗 张开双手，给你一个云朵抱抱！",
+                "🧸 小熊软糖托我带话：你值得所有拥抱",
+                "☁️ 毛茸茸的拥抱已送达～",
+                "🫂 抱紧处理！烦恼全部挤扁啦",
+                "💤 抱一抱，今晚梦里都是棉花糖",
+                "☁️ 扑进风里，把温柔都抱给你～",
+                "🌷 春风路过，捎来一个软软拥抱",
+                "🐻 小熊抱紧你，所有不开心都走开",
+                "✨ 星星降落，送你一个亮晶晶的抱抱",
+                "🫧 泡泡裹着温柔，轻轻抱住你",
+                "🍃 晚风轻拥，烦恼全都散掉",
+                "🌸 花开正好，给你满杯温柔拥抱",
+                "🌙 月亮值班，派我来抱抱你",
+                "🧸 把全世界的软，都揉进这个拥抱里",
+                "💫 轻轻一抱，心情立刻变晴朗"
+            ];
+
+            const candyPhrases = [
+                "🍬 给，这是比糖甜100倍的你！",
+                "🍰 今天是奶油味的小可爱出没",
+                "🧁 生活需要加糖，而你就是糖本身",
+                "🍫 巧克力说：你没发现吗？你甜得犯规",
+                "🍦 报告！甜度超标，因为你在笑！",
+                "🍓 草莓限定甜度，你是顶配版可爱～",
+                "🍯 风都变甜了，因为你刚好出现",
+                "🍡 把温柔揉成团，一口吃掉好心情",
+                "🍑 你一笑，就是人间水蜜桃本桃",
+                "🍧 夏日限定美好，是你也是冰沙",
+                "🍥 甜度报表已生成，来源：你",
+                "🍭 不用加糖，你自带甜份 buff",
+                "🍮 布丁都没你软，云朵都没你甜",
+                "🍩 甜甜圈认证：你是快乐本体",
+                "🌸 温柔和可爱，你都超标啦"
+            ];
+
+            const loveCompliments = [
+                "💕 你简直是迪士尼在逃小甜心！",
+                "🌟 你的眼睛里有银河，别藏啦！",
+                "🐰 有人看见小天使了吗？原来在这里！",
+                "🍓 今日可爱指数：爆表！",
+                "🎀 你只要笑一笑，我的世界就粉红啦",
+                "✨ 美貌与善良并存，说的就是你",
+                "🌺 你像春天的花，把周围都染香",
+                "🍧 老天爷偷偷给你加了‘迷人’滤镜",
+                "🐣 是哪个小仙女忘记隐藏翅膀啦？",
+                "💖 心跳的节奏，刚好是你微笑的弧度",
+                "🌼 你是这颗星球上最甜的限定款",
+                "🌙 你是月亮派来，温柔人间的小宝贝～",
+                "🌈 往这一站，就是自带高光的存在",
+                "🍑 温柔又可爱，这谁看了不心动啊",
+                "🎀 可爱没有边界，你是宇宙中心",
+                "✨ 人间小美好，说的就是你本人",
+                "🌸 温柔到发光，治愈所有不开心",
+                "🧚 你是下凡体验生活的小仙女吧",
+                "💫 一眼沦陷，你也太好看了吧",
+                "🌷 气质这一块，被你拿捏得死死的",
+                "🍭 可爱到犯规，建议直接收藏",
+                "🌟 你一出现，所有风景都变温柔",
+                "💖 温柔和可爱，你天生就拥有",
+                "🐰 软软糯糯，是人间宝藏没错了",
+                "🌿 你自带温柔气场，太治愈啦",
+                "🎡 快乐和美好，都因你准时赴约"
+            ];
+
+            // ---------- 原始花朵句子数组（可能有重复开头）----------
+            const rawFlowerPhrases = [
+                "🌷 郁金香说：你比阳光还耀眼～",
+                "🌻 向日葵说：你的笑就是它的太阳！",
+                "🌸 樱花说：想把所有花瓣都送给你",
+                "🌼 小雏菊说：希望你天天没烦恼！",
+                "🌺 芙蓉说：你害羞的时候最可爱啦",
+                "🌹 偷偷告诉你，玫瑰都嫉妒你的颜值",
+                "🌸 每一片花瓣都写着‘你最棒’",
+                "🌷 花花说：不许不开心，我会心疼的",
+                "🌻 给你一整个春天的快乐，接住咯",
+                "🌼 小太阳花命令你：现在立刻马上笑一个",
+                "💐 满天星说：你比星光更耀眼",
+                "🌷 铃兰说：你笑起来，世界都变温柔",
+                "🌸 桃花说：你一笑，春天就来了",
+                "🌹 月季说：你值得被好好偏爱呀",
+                "🌼 茉莉说：你自带温柔，不用假装坚强",
+                "🍃 风信子说：快乐会顺着花香找到你",
+                "🌻 金盏菊说：要一直像小太阳发光哦",
+                "💐 勿忘我说：你早就被人悄悄放在心上",
+                "🌿 三叶草说：好运会一直围着你转",
+                "🌸 海棠说：你温柔的样子，最让人心动",
+                "🌷 百合说：你本身，就是美好本身",
+                "🌿 薄荷说：你一出现，空气都变清新啦",
+                "🌾 稻穗说：你温柔得让风都放慢脚步",
+                "🌺 山茶说：你的温柔，比花开还动人"
+            ];
+
+            // ---------- 可用花朵 Emoji 大全（确保足够多且不重复）----------
+            const flowerEmojis = [
+                "🌷", "🌻", "🌸", "🌼", "🌺", "🌹", "🥀", "🌿", "🍃", "🌾",
+                "💐", "🌽", "🌱", "🌲", "🌳", "🌴", "🌵", "🌶️", "🍄", "🌰",
+                "🪷", "🪻", "🪴", "☘️", "🍀", "🌿", "🍂", "🍁", "🌾", "🌻",
+                "🌞", "⭐", "🌟", "☀️", "🌈", "☁️", "⛅", "🌤️", "🌥️", "🌦️"
+            ]; // 足够覆盖所有句子
+
+            // 处理句子，确保每个句子开头有唯一的花朵emoji
+            function makeUniqueFlowerPhrases(phrases) {
+                const usedEmojis = new Set();
+                const result = [];
+                for (let phrase of phrases) {
+                    // 用正则匹配开头的emoji
+                    const match = phrase.match(/^(\p{Emoji}+)/u);
+                    let currentEmoji = match ? match[1] : null;
+
+                    // 如果没有匹配到emoji（极小概率），或该emoji已被使用，则分配新emoji
+                    if (!currentEmoji || usedEmojis.has(currentEmoji) || !flowerEmojis.includes(currentEmoji)) {
+                        // 从flowerEmojis中找一个未使用的
+                        const newEmoji = flowerEmojis.find(e => !usedEmojis.has(e)) || "🌸";
+                        // 替换句子开头的emoji部分，如果原来没有emoji则直接添加
+                        if (match) {
+                            phrase = phrase.replace(/^(\p{Emoji}+)/u, newEmoji);
+                        } else {
+                            phrase = newEmoji + " " + phrase;
+                        }
+                        currentEmoji = newEmoji;
+                    }
+                    usedEmojis.add(currentEmoji);
+                    result.push(phrase);
+                }
+                return result;
+            }
+
+            // 生成唯一开头的花朵句子数组
+            const flowerPhrases = makeUniqueFlowerPhrases(rawFlowerPhrases);
+
+            // ---------- 动态生成花朵按钮，每个按钮对应一句唯一的话 ----------
+            flowerGarden.innerHTML = ''; // 清空（确保没有任何残留按钮）
+            flowerPhrases.forEach((phrase) => {
+                // 提取开头的emoji
+                const emojiMatch = phrase.match(/^(\p{Emoji}+)/u);
+                const emoji = emojiMatch ? emojiMatch[1] : "🌸";
+                
+                const btn = document.createElement('button');
+                btn.className = 'flower-btn';
+                btn.textContent = emoji;
+                btn.addEventListener('click', () => {
+                    flowerMessageDiv.textContent = phrase; // 显示完整句子
+                    // 加点小动画
+                    flowerMessageDiv.style.transform = 'scale(1.05)';
+                    setTimeout(() => flowerMessageDiv.style.transform = 'scale(1)', 120);
+                });
+                flowerGarden.appendChild(btn);
+            });
+
+            // 页面载入后随机显示一条花朵句子作为欢迎语
+            window.addEventListener('load', function() {
+                setTimeout(() => {
+                    loveMessageDiv.innerHTML = `<span class="heart-burst">🌈</span> 你来啦？等你好久了～ <span class="heart-burst">🌈</span>`;
+                }, 200);
+                const randomIdx = Math.floor(Math.random() * flowerPhrases.length);
+                flowerMessageDiv.textContent = flowerPhrases[randomIdx];
+            });
+
+            // 更新love消息的函数
+            function updateLoveMessage(text) {
+                loveMessageDiv.innerHTML = `<span class="heart-burst">💖</span> ${text} <span class="heart-burst">💖</span>`;
+            }
+
+            // 按钮事件
+            giggleBtn.addEventListener('click', function() {
+                const idx = Math.floor(Math.random() * gigglePhrases.length);
+                updateLoveMessage(gigglePhrases[idx]);
+            });
+
+            hugBtn.addEventListener('click', function() {
+                const idx = Math.floor(Math.random() * hugPhrases.length);
+                updateLoveMessage(hugPhrases[idx]);
+            });
+
+            candyBtn.addEventListener('click', function() {
+                const idx = Math.floor(Math.random() * candyPhrases.length);
+                updateLoveMessage(candyPhrases[idx]);
+            });
+
+            sendLoveBtn.addEventListener('click', function() {
+                const idx = Math.floor(Math.random() * loveCompliments.length);
+                updateLoveMessage(loveCompliments[idx]);
+                sendLoveBtn.style.transform = 'scale(0.96)';
+                setTimeout(() => sendLoveBtn.style.transform = 'scale(1)', 100);
+            });
+
+            // 双击卡片彩蛋
+            const card = document.querySelector('.happy-card');
+            card.addEventListener('dblclick', function() {
+                loveMessageDiv.innerHTML = `<span class="heart-burst">💗💗💗</span> 全世界最可爱的就是你 <span class="heart-burst">💗💗💗</span>`;
+                loveMessageDiv.style.transform = 'scale(1.1)';
+                setTimeout(() => loveMessageDiv.style.transform = 'scale(1)', 200);
+            });
+        })();
+    </script>
+</body>
+</html>
